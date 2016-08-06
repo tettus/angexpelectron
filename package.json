@@ -54,6 +54,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angular/angular2-seed.git"
+    "url": "git+https://github.com/tettus/angexpelectron.git"
   } 
 }
