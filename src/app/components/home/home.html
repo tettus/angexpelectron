@@ -1,0 +1,33 @@
+<html>
+
+<body>
+  <main materialize>
+    <nav class="light-blue lighten-1 uppercase" role="navigation" style="-webkit-app-region: drag">
+      <div class="nav-wrapper container">
+        
+        <a id="logo-container" href="#" class="brand-logo">Logo</a>
+
+        <ul id="slide-out" class="side-nav">
+          <li>
+            <a> LOGO </a>
+          </li>
+          <li *ngFor="let routeName of routeNames">
+            <a [routerLink]="[routeName]">{{routeName}}</a></li>
+        </ul>
+        <a materialize="sideNav" [materializeParams]="[{edge:'left'}]" href="#" data-activates="slide-out"  class="button-collapse show-on-large webkit-not-draggable draggable">
+         <i class="mdi-navigation-menu material-icons">menu</i></a>
+
+        <a id="close-btn" href="#" (click)="closeWindow()" class="show-on-large webkit-not-draggable draggable pull-right">
+          <i class="mdi-navigation-menu material-icons">close</i></a>
+        <a id="close-btn" href="#" (click)="closeWindow()" class="show-on-large webkit-not-draggable draggable pull-right">
+          <i class="mdi-navigation-menu material-icons">minimize</i></a>
+
+      </div>
+    </nav>
+    <div class="main_window">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</body>
+
+</html>

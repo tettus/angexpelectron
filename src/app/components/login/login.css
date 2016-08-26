@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    -ms-flex-align: center;
+	  -webkit-align-items: center;
+	  -webkit-box-align: center;
+	  align-items: center;
+  }
+
+  main {
+    flex: 1 0 auto;    
+    width: 100%;
+  }

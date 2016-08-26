@@ -1,0 +1,71 @@
+<div class="container-fluid">
+      <form materialize>
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card white accent-3">
+              <div class="card-content">
+                <span class="card-title">Form</span>
+
+                <div class="row">
+                  <div class="input-field col m12 s12">
+                    <input [(ngModel)]="employee.employeeId" id="employee_id" type="text" class="validate">
+                    <label for="employee_id">Employee ID</label>
+                  </div>
+                  <div class="input-field col m12 s12">
+                    <input [(ngModel)]="employee.firstName" id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                  </div>
+                  <div class="input-field col s12 m12">
+                    <input [(ngModel)]="employee.lastName" id="first_name" type="text" class="validate">                    
+                    <label for="lastname">Last Name</label>
+                  </div>
+                  <div class="input-field col s6 m6">
+                    <select [(ngModel)]="employee.gender" materialize="material_select" [materializeSelectOptions]="selectOptions">
+                        <option value="" disabled selected>Select an option</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <label>Gender</label>
+                  </div>
+                  <div class="input-field col s6 m6">
+                    <input  [(ngModel)]="employee.dob"  materialize="pickadate" type="date" class="datepicker" [(ngModel)]="dob"
+                    [materializeParams]="[{selectMonths: true, selectYears: 100}]" >
+                    <label for="dob">Date Of Birth</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input   [(ngModel)]="employee.phone"  id="icon_telephone" type="tel" class="validate" [(ngModel)]="phone">
+                    <label for="icon_telephone">Telephone</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <input  [(ngModel)]="employee.address"  id="address" type="tel" class="validate">
+                    <label for="address">Address</label>
+                  </div>
+                  <div class="input-field col s6 m6">
+                    <input id="salary" type="number" class="validate">
+                    <label for="salary">Salary</label>
+                  </div>
+                  <div class="input-field col s6 m6">
+                    <input materialize="pickadate" type="date" class="datepicker" [materializeParams]="[{selectMonths: true, selectYears: 5}]">
+                    <label for="doj">Date Of Joining</label>
+                  </div>
+                  <div class="input-field col s12 m12">
+                    <select [(ngModel)]="selectedRole" materialize="material_select" [materializeSelectOptions]="selectOptions">
+                        <option value="" disabled selected>Select a role</option>
+                        <option>Admin</option>
+                        <option>Sales</option>
+                    </select>
+                    <label>Role</label>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-action">
+                <a id="download-button" (click)="addUser()" class="btn waves-effect waves-light red">Add</a>
+                 <a id="download-button" [routerLink]="['/home/employees']" class="btn waves-effect waves-light red">Back</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>

@@ -1,0 +1,20 @@
+ <h4>Employee List</h4>
+ <table class="bordered highlight striped data-table centered">
+        <thead>
+          <tr>
+              <th data-field="id">Employee ID</th>
+              <th data-field="name">Employee Name</th>              
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let emp of employees | async" class="uppercase">
+            <td>{{emp.employeeId}}</td>
+            <td>{{emp.firstName}} &nbsp;
+             {{emp.lastName}}</td>
+          </tr>
+         
+        </tbody>
+      </table>
+            
+ <a id="download-button" (click)="goToAdd()" class="btn waves-effect waves-light red">Add</a>

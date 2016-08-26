@@ -6,30 +6,67 @@ var path = require('path');
 var webpackConfig = {
   entry: {
     'polyfills': './src/polyfills.browser.ts',
-    'vendor':    './src/vendor.browser.ts',
-    'main':       './src/main.browser.ts'    
+    'vendor': './src/vendor.browser.ts',
+    'main': './src/main.browser.ts' 
   },
 
   output: {
-    path: './dist',
+    path: './output',
   },
 
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity })
   ],
+   
+  
 
   module: {
     loaders: [
-      // .ts files for TypeScript
       { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
-      { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
+      //{ test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
+      
       { test: /\.html$/, loader: 'raw-loader' }
     ]
-  }
-
+  },
+  target:"electron",
+  
 };
 
+
+var materializeConfig={
+  //... 
+  resolve: {
+    alias: {
+      materializecss: 'materialize-css/dist/css/materialize.css',
+      materialize: 'materialize-css/dist/js/materialize.js',
+      //... 
+    }
+    //... 
+  },
+  module: {
+    loaders: [
+      {
+        test: /materialize-css\/dist\/js\/materialize\.js/,
+        loader: 'imports?materializecss'
+      },
+      { test: /^((?!materialize).)*\.css$/,    loaders: ['to-string-loader', 'css-loader']},
+      { test: /materialize\.css$/,   loader: 'style-loader!css-loader' },
+      { test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000' }     
+      //... 
+    ]
+  },
+  plugins: [
+      new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery",
+          "window.jQuery": "jquery",
+          Hammer: "hammerjs/hammer"
+      })
+  ],
+    target:"electron"
+  //... 
+} 
 
 // Our Webpack Defaults
 var defaultConfig = {
@@ -43,7 +80,7 @@ var defaultConfig = {
   },
 
   resolve: {
-    root: [ path.join(__dirname, 'src') ],
+    root: [path.join(__dirname, 'src')],
     extensions: ['', '.ts', '.js']
   },
 
@@ -59,8 +96,9 @@ var defaultConfig = {
     Buffer: 0,
     clearImmediate: 0,
     setImmediate: 0
-  }
+  },
+  target:"electron"
 };
 
 var webpackMerge = require('webpack-merge');
-module.exports = webpackMerge(defaultConfig, webpackConfig);
+module.exports = webpackMerge(defaultConfig, webpackConfig,materializeConfig);

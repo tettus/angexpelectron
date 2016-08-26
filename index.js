@@ -3,25 +3,32 @@ var app = electron.app;
 //var BrowserWindow = require('browser-window');
 var BrowserWindow = electron.BrowserWindow;
 
-var server=require('./src/server/app');
+var http = require('http');
+var appserver = require('./src/server/app');
 
-app.on('ready', ()=>{
+app.on('ready', () => {
     var mainWindow = new BrowserWindow({
-        width: 380,
+        frame: false,
+        width: 440,
         height: 720,
         resizable: false
     })
-    mainWindow.loadURL('file://' + __dirname + '/src/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/src/index_electron.html');
     mainWindow.setMenu(null);
-  
-    try{
-     server.listen(3000);
-    }catch(err){
-         throw err;
-     }
+    //mainWindow.webContents.openDevTools()
+
+    //start application express server
+    try {
+        var server = http.createServer(appserver);
+        server.listen(3000);
+    } catch (err) {
+        throw err;
+    }
+
+   
 });
 
 
- 
 
- 
+
+

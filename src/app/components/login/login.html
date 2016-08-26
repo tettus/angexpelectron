@@ -1,0 +1,35 @@
+<html>
+<body>
+    <main>
+        <div class="container-fluid">
+        <form materialize >
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card white accent-3">
+                        <div class="card-content">
+                            <span class="card-title">Login</span>
+                          
+                                <div class="row">
+                                    <div class="input-field col m12 s12">
+                                         <input [(ngModel)]="firstName"  id="first_name" type="text" class="validate">
+                                        <label for="first_name">First Name</label>
+                                    </div>
+                                    <div class="input-field col s12 m12">
+                                        <input id="password" type="text" class="validate">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                        <div class="card-action">
+                                   <a id="download-button" (click)="login('test','test')" class="btn waves-effect waves-light red">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             </form>
+        </div>
+    </main>
+</body>
+
+</html>
